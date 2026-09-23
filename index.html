@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Max Artesanato</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4efe9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .login-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 380px;
+      border: 1px solid #e0d8ce;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-img {
+      max-width: 100px;
+      max-height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      border-radius: 50%;
+    }
+
+    .login-header h2 {
+      color: #5a3d28;
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+
+    .login-header p {
+      color: #8c7a6b;
+      font-size: 0.85rem;
+    }
+
+    /* Abas de Alternância (Login / Cadastrar) */
+    .aba-container {
+      display: flex;
+      border-bottom: 2px solid #e0d8ce;
+      margin-bottom: 20px;
+    }
+
+    .aba-btn {
+      flex: 1;
+      padding: 10px;
+      background: none;
+      border: none;
+      color: #8c7a6b;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .aba-btn.ativa {
+      color: #8b5e3c;
+      border-bottom: 3px solid #8b5e3c;
+    }
+
+    .form-box {
+      display: none;
+    }
+
+    .form-box.ativo {
+      display: block;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #5a3d28;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-group input:focus {
+      border-color: #8b5e3c;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background-color: #8b5e3c;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-top: 6px;
+    }
+
+    .btn-submit:hover {
+      background-color: #6f492e;
+    }
+
+    .btn-submit:disabled {
+      background-color: #b3a296;
+      cursor: not-allowed;
+    }
+
+    .mensagem {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .mensagem.erro { color: #d9534f; }
+    .mensagem.sucesso { color: #5cb85c; }
+    .mensagem.carregando { color: #8b5e3c; }
+
+    /* Estilos da Tela Inicial / Dashboard */
+    .dashboard-container {
+      display: none;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 600px;
+      border: 1px solid #e0d8ce;
+    }
+
+    .dashboard-header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e0d8ce;
+    }
+
+    .dashboard-header h2 {
+      color: #5a3d28;
+      font-size: 1.6rem;
+      margin-top: 5px;
+    }
+
+    .menu-modulos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .btn-modulo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 16px;
+      background-color: #f4efe9;
+      color: #5a3d28;
+      border: 1px solid #e0d8ce;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-modulo:hover {
+      background-color: #e8ded4;
+    }
+
+    .btn-modulo.ativo {
+      background-color: #8b5e3c;
+      color: #ffffff;
+      border-color: #8b5e3c;
+    }
+
+    .conteudo-modulo {
+      display: none;
+      padding: 20px;
+      background-color: #faf8f5;
+      border: 1px solid #e0d8ce;
+      border-radius: 8px;
+      min-height: 150px;
+    }
+
+    .conteudo-modulo.ativo {
+      display: block;
+    }
+
+    .conteudo-modulo h3 {
+      color: #5a3d28;
+      margin-bottom: 8px;
+    }
+
+    .conteudo-modulo p {
+      color: #8c7a6b;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= TELA DE LOGIN / CADASTRO ================= -->
+  <div id="loginSection" class="login-container">
+    <div class="login-header">
+      <img id="appLogo" class="logo-img" src="https://via.placeholder.com/100?text=Logo" alt="Logo do Ateliê">
+      <h2>Max Artesanato</h2>
+      <p id="subtituloAba">Acesse sua conta para continuar</p>
+    </div>
+
+    <!-- Botões para trocar entre Login e Cadastro -->
+    <div class="aba-container">
+      <button type="button" class="aba-btn ativa" onclick="mudarAba('login')">Entrar</button>
+      <button type="button" class="aba-btn" onclick="mudarAba('cadastro')">Cadastrar</button>
+    </div>
+
+    <!-- Formulário de LOGIN -->
+    <form id="loginForm" class="form-box ativo">
+      <div class="input-group">
+        <label for="usuarioLogin">Usuário / Nome</label>
+        <input type="text" id="usuarioLogin" placeholder="Digite seu usuário" required>
+      </div>
+
+      <div class="input-group">
+        <label for="senhaLogin">Senha</label>
+        <input type="password" id="senhaLogin" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnEntrar">Entrar no Sistema</button>
+    </form>
+
+    <!-- Formulário de CADASTRO DE SENHA/USUÁRIO -->
+    <form id="cadastroForm" class="form-box">
+      <div class="input-group">
+        <label for="usuarioCad">Novo Usuário / Nome</label>
+        <input type="text" id="usuarioCad" placeholder="Ex: MariaAtelie" required>
+      </div>
+
+      <div class="input-group">
+        <label for="senhaCad">Criar Senha</label>
+        <input type="password" id="senhaCad" placeholder="Crie uma senha" required>
+      </div>
+
+      <div class="input-group">
+        <label for="logoCad">Link da Logo (opcional)</label>
+        <input type="url" id="logoCad" placeholder="https://link-da-imagem.png">
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnCadastrar">Salvar na Planilha</button>
+    </form>
+
+    <div id="mensagem" class="mensagem"></div>
+  </div>
+
+  <!-- ================= TELA INICIAL (DASHBOARD) ================= -->
+  <div id="dashboardSection" class="dashboard-container">
+    <div class="dashboard-header">
+      <img id="dashLogo" class="logo-img" src="https://via.placeholder.com/100?text=Logo" alt="Logo do Ateliê">
+      <h2>Max Artesanato</h2>
+      <p>Painel de Controle</p>
+    </div>
+
+    <!-- Botões das Abas do Sistema -->
+    <div class="menu-modulos">
+      <button type="button" class="btn-modulo ativo" onclick="abrirModulo('vendas')">🛒 Vendas</button>
+      <button type="button" class="btn-modulo" onclick="abrirModulo('cadastros')">📝 Cadastros</button>
+      <button type="button" class="btn-modulo" onclick="abrirModulo('agendas')">📅 Agendas</button>
+      <button type="button" class="btn-modulo" onclick="abrirModulo('despesas')">💸 Despesas</button>
+      <button type="button" class="btn-modulo" onclick="abrirModulo('lucro')">📊 Lucro</button>
+    </div>
+
+    <!-- Conteúdo das Abas -->
+    <div id="mod-vendas" class="conteudo-modulo ativo">
+      <h3>Módulo de Vendas</h3>
+      <p>Área reservada para lançamentos e controle de vendas do ateliê.</p>
+    </div>
+
+    <div id="mod-cadastros" class="conteudo-modulo">
+      <h3>Módulo de Cadastros</h3>
+      <p>Área reservada para cadastramento de produtos, clientes e materiais.</p>
+    </div>
+
+    <div id="mod-agendas" class="conteudo-modulo">
+      <h3>Módulo de Agendas</h3>
+      <p>Área reservada para controle de horários e entregas encomendadas.</p>
+    </div>
+
+    <div id="mod-despesas" class="conteudo-modulo">
+      <h3>Módulo de Despesas</h3>
+      <p>Área reservada para registro e acompanhamento de gastos.</p>
+    </div>
+
+    <div id="mod-lucro" class="conteudo-modulo">
+      <h3>Módulo de Lucro</h3>
+      <p>Área reservada para demonstrativos de ganhos e faturamento.</p>
+    </div>
+  </div>
+
+  <script>
+    const URL_GOOGLE_SCRIPT = 'https://script.google.com/macros/s/AKfycbxuBrHHA21cQeETUWOXAtPwo6Ddbnw_SE2q3lyVO_0NLikWldXaOxcPo_5noE_0i7Yy/exec';
+
+    const loginSection = document.getElementById('loginSection');
+    const dashboardSection = document.getElementById('dashboardSection');
+    const loginForm = document.getElementById('loginForm');
+    const cadastroForm = document.getElementById('cadastroForm');
+    const mensagem = document.getElementById('mensagem');
+    const appLogo = document.getElementById('appLogo');
+    const dashLogo = document.getElementById('dashLogo');
+    const subtituloAba = document.getElementById('subtituloAba');
+
+    // Troca entre as telas de Login e Cadastro
+    function mudarAba(aba) {
+      mensagem.textContent = '';
+      mensagem.className = 'mensagem';
+
+      const botoes = document.querySelectorAll('.aba-btn');
+      botoes.forEach(btn => btn.classList.remove('ativa'));
+
+      if (aba === 'login') {
+        botoes[0].classList.add('ativa');
+        loginForm.classList.add('ativo');
+        cadastroForm.classList.remove('ativo');
+        subtituloAba.textContent = 'Acesse sua conta para continuar';
+      } else {
+        botoes[1].classList.add('ativa');
+        loginForm.classList.remove('ativo');
+        cadastroForm.classList.add('ativo');
+        subtituloAba.textContent = 'Crie um novo acesso para o ateliê';
+      }
+    }
+
+    // Busca a logo ao carregar a página
+    window.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch(`${URL_GOOGLE_SCRIPT}?acao=buscarLogo`);
+        const resultado = await response.json();
+        if (resultado.status === 'sucesso' && resultado.logo) {
+          appLogo.src = resultado.logo;
+          dashLogo.src = resultado.logo;
+        }
+      } catch (err) {
+        console.log('Aguardando conexão com a planilha...', err);
+      }
+    });
+
+    // AÇÃO 1: Fazer LOGIN
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      exibirMensagem('Verificando credenciais...', 'carregando');
+
+      const usuario = document.getElementById('usuarioLogin').value;
+      const senha = document.getElementById('senhaLogin').value;
+
+      try {
+        const response = await fetch(URL_GOOGLE_SCRIPT, {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ acao: 'login', usuario: usuario, senha: senha })
+        });
+
+        const resultado = await response.json();
+
+        if (resultado.status === 'sucesso') {
+          exibirMensagem('Login realizado com sucesso!', 'sucesso');
+         
+          // Se tiver a logo retornada, atualiza a imagem
+          if (resultado.usuario && resultado.usuario.logo) {
+            appLogo.src = resultado.usuario.logo;
+            dashLogo.src = resultado.usuario.logo;
+          }
+
+          localStorage.setItem('usuarioLogado', JSON.stringify(resultado.usuario));
+
+          // Alterna para a Tela Inicial (Dashboard)
+          setTimeout(() => {
+            loginSection.style.display = 'none';
+            dashboardSection.style.display = 'block';
+          }, 800);
+
+        } else {
+          exibirMensagem(resultado.mensagem || 'Usuário ou senha incorretos.', 'erro');
+        }
+      } catch (error) {
+        exibirMensagem('Erro ao conectar com a planilha.', 'erro');
+      }
+    });
+
+    // AÇÃO 2: Criar CADASTRO (Grava na Planilha)
+    cadastroForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      exibirMensagem('Salvando novo usuário na planilha...', 'carregando');
+
+      const usuario = document.getElementById('usuarioCad').value;
+      const senha = document.getElementById('senhaCad').value;
+      const logo = document.getElementById('logoCad').value;
+
+      try {
+        const response = await fetch(URL_GOOGLE_SCRIPT, {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ acao: 'cadastrar', usuario: usuario, senha: senha, logo: logo })
+        });
+
+        const resultado = await response.json();
+
+        if (resultado.status === 'sucesso') {
+          exibirMensagem('Usuário cadastrado com sucesso! Agora você já pode entrar.', 'sucesso');
+          cadastroForm.reset();
+          setTimeout(() => mudarAba('login'), 2000);
+        } else {
+          exibirMensagem(resultado.mensagem || 'Erro ao cadastrar usuário.', 'erro');
+        }
+      } catch (error) {
+        exibirMensagem('Erro ao cadastrar na planilha.', 'erro');
+      }
+    });
+
+    function exibirMensagem(texto, tipo) {
+      mensagem.className = `mensagem ${tipo}`;
+      mensagem.textContent = texto;
+    }
+
+    // Função para alternar entre os Módulos do Dashboard
+    function abrirModulo(modulo) {
+      // Remove a classe ativa de todos os botões e conteúdos
+      const botoes = document.querySelectorAll('.btn-modulo');
+      const conteudos = document.querySelectorAll('.conteudo-modulo');
+
+      botoes.forEach(btn => btn.classList.remove('ativo'));
+      conteudos.forEach(cont => cont.classList.remove('ativo'));
+
+      // Ativa o botão e a aba correspondente
+      const abaAtiva = document.getElementById('mod-' + modulo);
+      if (abaAtiva) {
+        abaAtiva.classList.add('ativo');
+      }
+
+      const btnClicado = Array.from(botoes).find(btn => btn.getAttribute('onclick').includes(modulo));
+      if (btnClicado) {
+        btnClicado.classList.add('ativo');
+      }
+    }
+  </script>
+</body>
+</html>
+
+ 
