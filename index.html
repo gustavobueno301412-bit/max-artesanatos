@@ -155,7 +155,7 @@
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       width: 100%;
-      max-width: 600px;
+      max-width: 750px;
       border: 1px solid #e0d8ce;
     }
 
@@ -205,6 +205,16 @@
       border-color: #8b5e3c;
     }
 
+    .btn-modulo.btn-voltar {
+      background-color: #d9534f;
+      color: #ffffff;
+      border-color: #d9534f;
+    }
+
+    .btn-modulo.btn-voltar:hover {
+      background-color: #c9302c;
+    }
+
     .conteudo-modulo {
       display: none;
       padding: 20px;
@@ -227,6 +237,166 @@
       color: #8c7a6b;
       font-size: 0.9rem;
     }
+
+    /* ESTILOS DO PAINEL CADASTRAR PRODUTO/PEÇA (Padrão Ateliê Marrom) */
+    .painel-produto-box {
+      background-color: #efe6dd;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #d8c8b8;
+      margin-top: 15px;
+    }
+
+    .painel-titulo-principal {
+      background-color: #8b5e3c;
+      color: #ffffff;
+      text-align: center;
+      padding: 12px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .bloco-secao {
+      background-color: #ffffff;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      border: 1px solid #e0d8ce;
+    }
+
+    .secao-titulo {
+      text-align: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      color: #5a3d28;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px dashed #d8c8b8;
+      padding-bottom: 6px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .form-row .campo-flex {
+      flex: 1;
+    }
+
+    .bloco-secao label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #5a3d28;
+      margin-bottom: 4px;
+    }
+
+    .bloco-secao input {
+      width: 100%;
+      padding: 9px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .bloco-secao input:focus {
+      border-color: #8b5e3c;
+    }
+
+    .bloco-secao input[readonly] {
+      background-color: #f4efe9;
+      color: #777;
+    }
+
+    /* Campo de Busca com Lupa */
+    .busca-box {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-lupa {
+      background-color: #8b5e3c;
+      color: #fff;
+      border: none;
+      padding: 0 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .btn-lupa:hover {
+      background-color: #6f492e;
+    }
+
+    /* Botões de Finalização */
+    .acoes-finalizar {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .btn-acao {
+      flex: 1;
+      padding: 11px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      color: #ffffff;
+      transition: opacity 0.2s;
+    }
+
+    .btn-acao:hover {
+      opacity: 0.9;
+    }
+
+    .btn-salvar { background-color: #4a7c59; }
+    .btn-limpar { background-color: #d9a05b; color: #ffffff; }
+    .btn-excluir { background-color: #c0392b; }
+
+    /* Tabela de Produtos Cadastrados */
+    .tabela-produtos-container {
+      margin-top: 20px;
+      overflow-x: auto;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid #e0d8ce;
+    }
+
+    .tabela-produtos {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      color: #333;
+    }
+
+    .tabela-produtos th {
+      background-color: #8b5e3c;
+      color: #ffffff;
+      padding: 10px;
+      text-align: left;
+    }
+
+    .tabela-produtos td {
+      padding: 9px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .tabela-produtos tr:hover {
+      background-color: #f9f6f0;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -239,7 +409,6 @@
       <p id="subtituloAba">Acesse sua conta para continuar</p>
     </div>
 
-    <!-- Botões para trocar entre Login e Cadastro -->
     <div class="aba-container">
       <button type="button" class="aba-btn ativa" onclick="mudarAba('login')">Entrar</button>
       <button type="button" class="aba-btn" onclick="mudarAba('cadastro')">Cadastrar</button>
@@ -291,13 +460,14 @@
       <p>Painel de Controle</p>
     </div>
 
-    <!-- Botões das Abas do Sistema -->
+    <!-- Botões das Abas do Sistema + Botão Voltar -->
     <div class="menu-modulos">
       <button type="button" class="btn-modulo ativo" onclick="abrirModulo('vendas')">🛒 Vendas</button>
       <button type="button" class="btn-modulo" onclick="abrirModulo('cadastros')">📝 Cadastros</button>
       <button type="button" class="btn-modulo" onclick="abrirModulo('agendas')">📅 Agendas</button>
       <button type="button" class="btn-modulo" onclick="abrirModulo('despesas')">💸 Despesas</button>
       <button type="button" class="btn-modulo" onclick="abrirModulo('lucro')">📊 Lucro</button>
+      <button type="button" class="btn-modulo btn-voltar" onclick="voltarParaLogin()">↩️ Voltar</button>
     </div>
 
     <!-- Conteúdo das Abas -->
@@ -306,9 +476,128 @@
       <p>Área reservada para lançamentos e controle de vendas do ateliê.</p>
     </div>
 
+    <!-- ABA DE CADASTRO DE PRODUTO COMPLETO -->
     <div id="mod-cadastros" class="conteudo-modulo">
-      <h3>Módulo de Cadastros</h3>
-      <p>Área reservada para cadastramento de produtos, clientes e materiais.</p>
+     
+      <div class="painel-produto-box">
+        <div class="painel-titulo-principal">Cadastrar Produto / Peça</div>
+
+        <!-- Seção de Consulta -->
+        <div class="bloco-secao">
+          <label for="inputConsultar">Consultar:</label>
+          <div class="busca-box">
+            <input type="text" id="inputConsultar" placeholder="Digite Cód ou Nome do Produto...">
+            <button type="button" class="btn-lupa" onclick="buscarProduto()" title="Buscar Produto">🔍</button>
+          </div>
+        </div>
+
+        <form id="formCadastroProduto">
+          <!-- Informações Gerais -->
+          <div class="bloco-secao">
+            <div class="secao-titulo">Informações Gerais</div>
+           
+            <div class="form-row">
+              <div class="campo-flex">
+                <label for="prodData">Data:</label>
+                <input type="text" id="prodData" readonly>
+              </div>
+              <div class="campo-flex">
+                <label for="prodHora">Hora:</label>
+                <input type="text" id="prodHora" readonly>
+              </div>
+              <div class="campo-flex">
+                <label for="prodCategoria">Categoria:</label>
+                <input type="text" id="prodCategoria" placeholder="Ex: Artesanato" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="campo-flex">
+                <label for="prodCod">Cód / Produto:</label>
+                <input type="text" id="prodCod" placeholder="Ex: COD001" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="campo-flex">
+                <label for="prodDescricao">Descrição:</label>
+                <input type="text" id="prodDescricao" placeholder="Descrição completa do produto" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Valores de Venda -->
+          <div class="bloco-secao">
+            <div class="secao-titulo">Valores de venda</div>
+           
+            <div class="form-row">
+              <div class="campo-flex">
+                <label for="prodPrecoAtacado">R$ - Atacado:</label>
+                <input type="number" step="0.01" id="prodPrecoAtacado" placeholder="0.00" required>
+              </div>
+              <div class="campo-flex">
+                <label for="prodPrecoVarejo">R$ - Varejo:</label>
+                <input type="number" step="0.01" id="prodPrecoVarejo" placeholder="0.00" required>
+              </div>
+              <div class="campo-flex">
+                <label for="prodPrecoEntrega">R$ - Entrega:</label>
+                <input type="number" step="0.01" id="prodPrecoEntrega" placeholder="0.00" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Informações Estoque -->
+          <div class="bloco-secao">
+            <div class="secao-titulo">Informações Estoque</div>
+           
+            <div class="form-row">
+              <div class="campo-flex">
+                <label for="prodLocalEstoque">Local Estoque:</label>
+                <input type="text" id="prodLocalEstoque" placeholder="Ex: Prateleira 1" required>
+              </div>
+              <div class="campo-flex">
+                <label for="prodQuantidade">Quantidade:</label>
+                <input type="number" id="prodQuantidade" placeholder="0" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Finalizar / Ações -->
+          <div class="bloco-secao">
+            <div class="secao-titulo">Finalizar</div>
+           
+            <div class="acoes-finalizar">
+              <button type="button" class="btn-acao btn-salvar" onclick="confirmarSalvar()">Salvar</button>
+              <button type="button" class="btn-acao btn-limpar" onclick="limparCamposProduto()">Limpar</button>
+              <button type="button" class="btn-acao btn-excluir" onclick="confirmarExcluir()">Excluir</button>
+            </div>
+          </div>
+        </form>
+
+        <div id="msgProduto" class="mensagem"></div>
+      </div>
+
+      <!-- Tabela de Produtos Cadastrados -->
+      <div class="tabela-produtos-container">
+        <h4 style="color:#5a3d28; margin-bottom: 8px;">Produtos Cadastrados na Planilha</h4>
+        <table class="tabela-produtos">
+          <thead>
+            <tr>
+              <th>Cód</th>
+              <th>Descrição</th>
+              <th>Categoria</th>
+              <th>Varejo</th>
+              <th>Qtd</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaCorpoProdutos">
+            <tr>
+              <td colspan="5" style="text-align: center; color: #888;">Nenhum produto carregado.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
 
     <div id="mod-agendas" class="conteudo-modulo">
@@ -328,7 +617,15 @@
   </div>
 
   <script>
-    const URL_GOOGLE_SCRIPT = 'https://script.google.com/macros/s/AKfycbxuBrHHA21cQeETUWOXAtPwo6Ddbnw_SE2q3lyVO_0NLikWldXaOxcPo_5noE_0i7Yy/exec';
+    // =========================================================================
+    // CONFIGURAÇÃO DAS APIS / URLS
+    // =========================================================================
+    // 1. URL da API de Login (MANTIDA INTACTA)
+    const URL_API_LOGIN = 'https://script.google.com/macros/s/AKfycbxuBrHHA21cQeETUWOXAtPwo6Ddbnw_SE2q3lyVO_0NLikWldXaOxcPo_5noE_0i7Yy/exec';
+
+    // 2. SEGUNDA URL DA API PARA A PARTE DE CADASTROS (Cole a sua segunda URL aqui)
+    const URL_API_CADASTRO = 'https://script.google.com/macros/s/AKfycbyx4STjpN3C6iIYanRWq0BaNDIeBP-GbhfvNh1qHsvjfxFWLeWrcWLYUChc6i1JJDvC/exec';
+    // =========================================================================
 
     const loginSection = document.getElementById('loginSection');
     const dashboardSection = document.getElementById('dashboardSection');
@@ -338,6 +635,46 @@
     const appLogo = document.getElementById('appLogo');
     const dashLogo = document.getElementById('dashLogo');
     const subtituloAba = document.getElementById('subtituloAba');
+    const msgProduto = document.getElementById('msgProduto');
+
+    let listaProdutosGlobal = [];
+
+    // Funções de auxílio para formatar a data e a hora
+    function formatarDataBR(dataStr) {
+      if (!dataStr) return '';
+      if (typeof dataStr === 'string' && dataStr.includes('T')) {
+        const d = new Date(dataStr);
+        if (!isNaN(d.getTime())) {
+          return d.toLocaleDateString('pt-BR');
+        }
+        const partes = dataStr.split('T')[0].split('-');
+        if (partes.length === 3) return `${partes[2]}/${partes[1]}/${partes[0]}`;
+      }
+      return dataStr;
+    }
+
+    function formatarHoraBR(horaStr) {
+      if (!horaStr) return '';
+      if (typeof horaStr === 'string' && horaStr.includes('T')) {
+        const d = new Date(horaStr);
+        if (!isNaN(d.getTime())) {
+          // Ajusta automaticamente o fuso horário para Brasília (UTC-3)
+          return d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
+        const tempo = horaStr.split('T')[1];
+        if (tempo) {
+          let [h, m] = tempo.substring(0, 5).split(':').map(Number);
+          h = (h - 3 + 24) % 24; // Subtrai 3 horas do UTC se necessário
+          return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+        }
+      }
+      return horaStr;
+    }
+
+    // Função para obter a URL correta do Cadastro (usa a 2ª API se preenchida, ou a 1ª como fallback)
+    function obterUrlCadastro() {
+      return (URL_API_CADASTRO && !URL_API_CADASTRO.includes('COLE_AQUI')) ? URL_API_CADASTRO : URL_API_LOGIN;
+    }
 
     // Troca entre as telas de Login e Cadastro
     function mudarAba(aba) {
@@ -360,10 +697,30 @@
       }
     }
 
+    // Botão Voltar (Retorna para a Tela de Login)
+    function voltarParaLogin() {
+      if (confirm('Deseja retornar para a tela inicial / login?')) {
+        dashboardSection.style.display = 'none';
+        loginSection.style.display = 'block';
+        limparCamposProduto();
+        document.getElementById('loginForm').reset();
+        mensagem.textContent = '';
+        mensagem.className = 'mensagem';
+      }
+    }
+
+    // Preenche Data e Hora automaticos ao abrir o painel
+    function atualizarDataHoraAutomática() {
+      const agora = new Date();
+      document.getElementById('prodData').value = agora.toLocaleDateString('pt-BR');
+      document.getElementById('prodHora').value = agora.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    }
+
     // Busca a logo ao carregar a página
     window.addEventListener('DOMContentLoaded', async () => {
+      atualizarDataHoraAutomática();
       try {
-        const response = await fetch(`${URL_GOOGLE_SCRIPT}?acao=buscarLogo`);
+        const response = await fetch(`${URL_API_LOGIN}?acao=buscarLogo`);
         const resultado = await response.json();
         if (resultado.status === 'sucesso' && resultado.logo) {
           appLogo.src = resultado.logo;
@@ -374,7 +731,7 @@
       }
     });
 
-    // AÇÃO 1: Fazer LOGIN
+    // AÇÃO 1: Fazer LOGIN (Usa URL_API_LOGIN)
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       exibirMensagem('Verificando credenciais...', 'carregando');
@@ -383,7 +740,7 @@
       const senha = document.getElementById('senhaLogin').value;
 
       try {
-        const response = await fetch(URL_GOOGLE_SCRIPT, {
+        const response = await fetch(URL_API_LOGIN, {
           method: 'POST',
           mode: 'cors',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -395,7 +752,6 @@
         if (resultado.status === 'sucesso') {
           exibirMensagem('Login realizado com sucesso!', 'sucesso');
          
-          // Se tiver a logo retornada, atualiza a imagem
           if (resultado.usuario && resultado.usuario.logo) {
             appLogo.src = resultado.usuario.logo;
             dashLogo.src = resultado.usuario.logo;
@@ -403,10 +759,10 @@
 
           localStorage.setItem('usuarioLogado', JSON.stringify(resultado.usuario));
 
-          // Alterna para a Tela Inicial (Dashboard)
           setTimeout(() => {
             loginSection.style.display = 'none';
             dashboardSection.style.display = 'block';
+            carregarProdutosPlanilha();
           }, 800);
 
         } else {
@@ -417,7 +773,7 @@
       }
     });
 
-    // AÇÃO 2: Criar CADASTRO (Grava na Planilha)
+    // AÇÃO 2: Criar CADASTRO DE USUÁRIO (Usa URL_API_LOGIN)
     cadastroForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       exibirMensagem('Salvando novo usuário na planilha...', 'carregando');
@@ -427,7 +783,7 @@
       const logo = document.getElementById('logoCad').value;
 
       try {
-        const response = await fetch(URL_GOOGLE_SCRIPT, {
+        const response = await fetch(URL_API_LOGIN, {
           method: 'POST',
           mode: 'cors',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -448,27 +804,205 @@
       }
     });
 
+    // AÇÃO 3: CONFIRMAR SALVAR PRODUTO (Usa a 2ª API - URL_API_CADASTRO)
+    function confirmarSalvar() {
+      const cod = document.getElementById('prodCod').value;
+      if (!cod) {
+        alert('Por favor, informe pelo menos o Código do produto antes de salvar.');
+        return;
+      }
+
+      if (confirm('Deseja mesmo salvar/atualizar este produto no banco de dados?')) {
+        executarSalvarProduto();
+      }
+    }
+
+    async function executarSalvarProduto() {
+      msgProduto.className = 'mensagem carregando';
+      msgProduto.textContent = 'Enviando dados para a planilha...';
+
+      atualizarDataHoraAutomática();
+
+      const dadosProduto = {
+        acao: 'cadastrarProduto',
+        data: document.getElementById('prodData').value,
+        hora: document.getElementById('prodHora').value,
+        categoria: document.getElementById('prodCategoria').value,
+        codProduto: document.getElementById('prodCod').value,
+        descricao: document.getElementById('prodDescricao').value,
+        precoAtacado: document.getElementById('prodPrecoAtacado').value,
+        precoVarejo: document.getElementById('prodPrecoVarejo').value,
+        precoEntrega: document.getElementById('prodPrecoEntrega').value,
+        localEstoque: document.getElementById('prodLocalEstoque').value,
+        quantidade: document.getElementById('prodQuantidade').value
+      };
+
+      try {
+        const response = await fetch(obterUrlCadastro(), {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(dadosProduto)
+        });
+
+        const resultado = await response.json();
+
+        if (resultado.status === 'sucesso') {
+          msgProduto.className = 'mensagem sucesso';
+          msgProduto.textContent = 'Produto salvo com sucesso!';
+          carregarProdutosPlanilha();
+        } else {
+          msgProduto.className = 'mensagem erro';
+          msgProduto.textContent = resultado.mensagem || 'Erro ao salvar produto.';
+        }
+      } catch (error) {
+        msgProduto.className = 'mensagem erro';
+        msgProduto.textContent = 'Erro ao se comunicar com a planilha de cadastro.';
+      }
+    }
+
+    // AÇÃO 4: LIMPAR CAMPOS
+    function limparCamposProduto() {
+      document.getElementById('formCadastroProduto').reset();
+      document.getElementById('inputConsultar').value = '';
+      atualizarDataHoraAutomática();
+      msgProduto.textContent = '';
+      msgProduto.className = 'mensagem';
+    }
+
+    // AÇÃO 5: CONFIRMAR EXCLUIR PRODUTO (Usa a 2ª API - URL_API_CADASTRO)
+    function confirmarExcluir() {
+      const cod = document.getElementById('prodCod').value;
+      if (!cod) {
+        alert('Selecione ou consulte um produto antes de excluir.');
+        return;
+      }
+
+      if (confirm('Deseja mesmo excluir este produto do banco de dados?')) {
+        executarExcluirProduto(cod);
+      }
+    }
+
+    async function executarExcluirProduto(cod) {
+      msgProduto.className = 'mensagem carregando';
+      msgProduto.textContent = 'Excluindo produto...';
+
+      try {
+        const response = await fetch(obterUrlCadastro(), {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ acao: 'excluirProduto', codProduto: cod })
+        });
+
+        const resultado = await response.json();
+
+        if (resultado.status === 'sucesso') {
+          msgProduto.className = 'mensagem sucesso';
+          msgProduto.textContent = 'Produto excluído com sucesso!';
+          limparCamposProduto();
+          carregarProdutosPlanilha();
+        } else {
+          msgProduto.className = 'mensagem erro';
+          msgProduto.textContent = resultado.mensagem || 'Erro ao excluir produto.';
+        }
+      } catch (error) {
+        msgProduto.className = 'mensagem erro';
+        msgProduto.textContent = 'Erro ao excluir da planilha.';
+      }
+    }
+
+    // AÇÃO 6: CARREGAR LISTA DA PLANILHA (Usa a 2ª API - URL_API_CADASTRO)
+    async function carregarProdutosPlanilha() {
+      try {
+        const response = await fetch(`${obterUrlCadastro()}?acao=buscarProdutos`);
+        const resultado = await response.json();
+
+        if (resultado.status === 'sucesso') {
+          listaProdutosGlobal = resultado.produtos || [];
+          renderizarTabelaProdutos(listaProdutosGlobal);
+        }
+      } catch (err) {
+        console.log('Erro ao carregar lista de produtos', err);
+      }
+    }
+
+    function renderizarTabelaProdutos(produtos) {
+      const tbody = document.getElementById('tabelaCorpoProdutos');
+      tbody.innerHTML = '';
+
+      if (!produtos || produtos.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #888;">Nenhum produto cadastrado.</td></tr>';
+        return;
+      }
+
+      produtos.forEach((prod) => {
+        const tr = document.createElement('tr');
+        tr.onclick = () => preencherFormularioComProduto(prod);
+        tr.innerHTML = `
+          <td><b>${prod.codProduto || ''}</b></td>
+          <td>${prod.descricao || ''}</td>
+          <td>${prod.categoria || ''}</td>
+          <td>R$ ${prod.precoVarejo || '0.00'}</td>
+          <td>${prod.quantidade || '0'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // AÇÃO 7: BUSCAR PRODUTO PELO CAMPO CONSULTAR (Cód ou Nome)
+    function buscarProduto() {
+      const termo = document.getElementById('inputConsultar').value.toLowerCase().trim();
+      if (!termo) {
+        renderizarTabelaProdutos(listaProdutosGlobal);
+        return;
+      }
+
+      const encontrados = listaProdutosGlobal.filter(p =>
+        (p.codProduto && p.codProduto.toString().toLowerCase().includes(termo)) ||
+        (p.descricao && p.descricao.toLowerCase().includes(termo))
+      );
+
+      renderizarTabelaProdutos(encontrados);
+
+      if (encontrados.length === 1) {
+        preencherFormularioComProduto(encontrados[0]);
+      }
+    }
+
+    function preencherFormularioComProduto(prod) {
+      document.getElementById('prodData').value = formatarDataBR(prod.data);
+      document.getElementById('prodHora').value = formatarHoraBR(prod.hora);
+      document.getElementById('prodCategoria').value = prod.categoria || '';
+      document.getElementById('prodCod').value = prod.codProduto || '';
+      document.getElementById('prodDescricao').value = prod.descricao || '';
+      document.getElementById('prodPrecoAtacado').value = prod.precoAtacado || '';
+      document.getElementById('prodPrecoVarejo').value = prod.precoVarejo || '';
+      document.getElementById('prodPrecoEntrega').value = prod.precoEntrega || '';
+      document.getElementById('prodLocalEstoque').value = prod.localEstoque || '';
+      document.getElementById('prodQuantidade').value = prod.quantidade || '';
+      msgProduto.textContent = 'Produto carregado no formulário.';
+      msgProduto.className = 'mensagem sucesso';
+    }
+
     function exibirMensagem(texto, tipo) {
       mensagem.className = `mensagem ${tipo}`;
       mensagem.textContent = texto;
     }
 
-    // Função para alternar entre os Módulos do Dashboard
     function abrirModulo(modulo) {
-      // Remove a classe ativa de todos os botões e conteúdos
       const botoes = document.querySelectorAll('.btn-modulo');
       const conteudos = document.querySelectorAll('.conteudo-modulo');
 
       botoes.forEach(btn => btn.classList.remove('ativo'));
       conteudos.forEach(cont => cont.classList.remove('ativo'));
 
-      // Ativa o botão e a aba correspondente
       const abaAtiva = document.getElementById('mod-' + modulo);
       if (abaAtiva) {
         abaAtiva.classList.add('ativo');
       }
 
-      const btnClicado = Array.from(botoes).find(btn => btn.getAttribute('onclick').includes(modulo));
+      const btnClicado = Array.from(botoes).find(btn => btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(modulo));
       if (btnClicado) {
         btnClicado.classList.add('ativo');
       }
