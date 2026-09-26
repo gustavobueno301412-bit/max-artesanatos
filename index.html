@@ -464,7 +464,7 @@
     <div class="menu-modulos">
       <button type="button" class="btn-modulo ativo" onclick="abrirModulo('vendas')">🛒 Vendas</button>
       <button type="button" class="btn-modulo" onclick="abrirModulo('cadastros')">📝 Cadastros</button>
-      <button type="button" class="btn-modulo" onclick="abrirModulo('agendas')">📅 Agendas</button>
+      <button type="button" class="btn-modulo" onclick="abrirModulo('encomendas')">📅 Encomendas</button>
       <button type="button" class="btn-modulo" onclick="abrirModulo('despesas')">💸 Despesas</button>
       <button type="button" class="btn-modulo" onclick="abrirModulo('lucro')">📊 Lucro</button>
       <button type="button" class="btn-modulo btn-voltar" onclick="voltarParaLogin()">↩️ Voltar</button>
@@ -600,8 +600,8 @@
 
     </div>
 
-    <div id="mod-agendas" class="conteudo-modulo">
-      <h3>Módulo de Agendas</h3>
+    <div id="mod-encomendas" class="conteudo-modulo">
+      <h3>Módulo de Encomendas</h3>
       <p>Área reservada para controle de horários e entregas encomendadas.</p>
     </div>
 
@@ -991,6 +991,12 @@
     }
 
     function abrirModulo(modulo) {
+      // Se clicar no botão de Encomendas, abre o link externo em nova aba
+      if (modulo === 'encomendas') {
+        window.open('https://gustavobueno301412-bit.github.io/cadastros-de-encomendas-max-artesanatos/', '_blank');
+        return;
+      }
+
       const botoes = document.querySelectorAll('.btn-modulo');
       const conteudos = document.querySelectorAll('.conteudo-modulo');
 
