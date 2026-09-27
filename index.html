@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Max Artesanato</title>
+  <title>🌲 Max Artesanato 🌲</title>
   <style>
     * {
       box-sizing: border-box;
@@ -405,7 +405,7 @@
   <div id="loginSection" class="login-container">
     <div class="login-header">
       <img id="appLogo" class="logo-img" src="https://via.placeholder.com/100?text=Logo" alt="Logo do Ateliê">
-      <h2>Max Artesanato</h2>
+      <h2>🌲 Max Artesanato 🌲</h2>
       <p id="subtituloAba">Acesse sua conta para continuar</p>
     </div>
 
@@ -417,12 +417,12 @@
     <!-- Formulário de LOGIN -->
     <form id="loginForm" class="form-box ativo">
       <div class="input-group">
-        <label for="usuarioLogin">Usuário / Nome</label>
+        <label for="usuarioLogin">🙎‍♂️🙎 Usuário / Nome</label>
         <input type="text" id="usuarioLogin" placeholder="Digite seu usuário" required>
       </div>
 
       <div class="input-group">
-        <label for="senhaLogin">Senha</label>
+        <label for="senhaLogin">🔒🗝️ Senha</label>
         <input type="password" id="senhaLogin" placeholder="••••••••" required>
       </div>
 
@@ -432,17 +432,17 @@
     <!-- Formulário de CADASTRO DE SENHA/USUÁRIO -->
     <form id="cadastroForm" class="form-box">
       <div class="input-group">
-        <label for="usuarioCad">Novo Usuário / Nome</label>
+        <label for="usuarioCad">🙎‍♂️🙎 Novo Usuário / Nome</label>
         <input type="text" id="usuarioCad" placeholder="Ex: MariaAtelie" required>
       </div>
 
       <div class="input-group">
-        <label for="senhaCad">Criar Senha</label>
+        <label for="senhaCad">🔒🗝️ Criar Senha</label>
         <input type="password" id="senhaCad" placeholder="Crie uma senha" required>
-      </div>
+      </div> 
 
       <div class="input-group">
-        <label for="logoCad">Link da Logo (opcional)</label>
+        <label for="logoCad">🔗 Link da Logo (opcional)</label>
         <input type="url" id="logoCad" placeholder="https://link-da-imagem.png">
       </div>
 
@@ -456,7 +456,7 @@
   <div id="dashboardSection" class="dashboard-container">
     <div class="dashboard-header">
       <img id="dashLogo" class="logo-img" src="https://via.placeholder.com/100?text=Logo" alt="Logo do Ateliê">
-      <h2>Max Artesanato</h2>
+      <h2>🌲 Max Artesanato 🌲</h2>
       <p>Painel de Controle</p>
     </div>
 
@@ -480,7 +480,7 @@
     <div id="mod-cadastros" class="conteudo-modulo">
      
       <div class="painel-produto-box">
-        <div class="painel-titulo-principal">Cadastrar Produto / Peça</div>
+        <div class="painel-titulo-principal">Cadastrar Produto / Peça 🗃️</div>
 
         <!-- Seção de Consulta -->
         <div class="bloco-secao">
@@ -494,7 +494,7 @@
         <form id="formCadastroProduto">
           <!-- Informações Gerais -->
           <div class="bloco-secao">
-            <div class="secao-titulo">Informações Gerais</div>
+            <div class="secao-titulo">Informações Gerais 📋</div>
            
             <div class="form-row">
               <div class="campo-flex">
@@ -528,7 +528,7 @@
 
           <!-- Valores de Venda -->
           <div class="bloco-secao">
-            <div class="secao-titulo">Valores de venda</div>
+            <div class="secao-titulo">Valores de venda 💰</div>
            
             <div class="form-row">
               <div class="campo-flex">
@@ -548,7 +548,7 @@
 
           <!-- Informações Estoque -->
           <div class="bloco-secao">
-            <div class="secao-titulo">Informações Estoque</div>
+            <div class="secao-titulo">Informações Estoque 📦</div>
            
             <div class="form-row">
               <div class="campo-flex">
@@ -564,12 +564,12 @@
 
           <!-- Finalizar / Ações -->
           <div class="bloco-secao">
-            <div class="secao-titulo">Finalizar</div>
+            <div class="secao-titulo">Finalizar ✅</div>
            
             <div class="acoes-finalizar">
-              <button type="button" class="btn-acao btn-salvar" onclick="confirmarSalvar()">Salvar</button>
-              <button type="button" class="btn-acao btn-limpar" onclick="limparCamposProduto()">Limpar</button>
-              <button type="button" class="btn-acao btn-excluir" onclick="confirmarExcluir()">Excluir</button>
+              <button type="button" class="btn-acao btn-salvar" onclick="confirmarSalvar()">Salvar 💾</button>
+              <button type="button" class="btn-acao btn-limpar" onclick="limparCamposProduto()">Limpar 🧹</button>
+              <button type="button" class="btn-acao btn-excluir" onclick="confirmarExcluir()">Excluir 🗑️</button>
             </div>
           </div>
         </form>
@@ -579,7 +579,7 @@
 
       <!-- Tabela de Produtos Cadastrados -->
       <div class="tabela-produtos-container">
-        <h4 style="color:#5a3d28; margin-bottom: 8px;">Produtos Cadastrados na Planilha</h4>
+        <h4 style="color:#5a3d28; margin-bottom: 8px;">Produtos Cadastrados 📝</h4>
         <table class="tabela-produtos">
           <thead>
             <tr>
@@ -734,7 +734,7 @@
     // AÇÃO 1: Fazer LOGIN (Usa URL_API_LOGIN)
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      exibirMensagem('Verificando credenciais...', 'carregando');
+      exibirMensagem('⏳ Verificando credenciais...', 'carregando');
 
       const usuario = document.getElementById('usuarioLogin').value;
       const senha = document.getElementById('senhaLogin').value;
