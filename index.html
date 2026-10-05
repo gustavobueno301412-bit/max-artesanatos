@@ -991,21 +991,21 @@
     }
 
     function abrirModulo(modulo) {
-      // Se clicar no botão de Vendas, abre o link de vendas externo em nova aba
+      // Se clicar no botão de Vendas, abre o link de vendas externo
       if (modulo === 'vendas') {
-        window.open('https://gustavobueno301412-bit.github.io/max-artesanatos-caixa/', '_blank');
+        window.location.href = 'https://gustavobueno301412-bit.github.io/max-artesanatos-caixa/';
         return;
       }
 
-      // Se clicar no botão de Encomendas, abre o link externo em nova aba
+      // Se clicar no botão de Encomendas, abre o link externo
       if (modulo === 'encomendas') {
-        window.open('https://gustavobueno301412-bit.github.io/cadastros-de-encomendas-max-artesanatos/', '_blank');
+        window.location.href = 'https://gustavobueno301412-bit.github.io/cadastros-de-encomendas-max-artesanatos/';
         return;
       }
-      
-      // Se clicar no botão de Encomendas, abre o link externo em nova aba
+     
+      // Se clicar no botão de Despesas, abre o link externo
       if (modulo === 'despesas') {
-        window.open('https://gustavobueno301412-bit.github.io/max-artesanatos-despesas/', '_blank');
+        window.location.href = 'https://gustavobueno301412-bit.github.io/max-artesanatos-despesas/';
         return;
       }
 
