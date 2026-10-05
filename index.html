@@ -1002,6 +1002,12 @@
         window.open('https://gustavobueno301412-bit.github.io/cadastros-de-encomendas-max-artesanatos/', '_blank');
         return;
       }
+      
+      // Se clicar no botão de Encomendas, abre o link externo em nova aba
+      if (modulo === 'despesas') {
+        window.open('https://gustavobueno301412-bit.github.io/max-artesanatos-despesas/', '_blank');
+        return;
+      }
 
       const botoes = document.querySelectorAll('.btn-modulo');
       const conteudos = document.querySelectorAll('.conteudo-modulo');
