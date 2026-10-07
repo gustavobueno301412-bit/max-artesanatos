@@ -1009,6 +1009,12 @@
         return;
       }
 
+      // Se clicar no botão de Lucro, abre o link externo
+      if (modulo === 'lucro') {
+        window.location.href = 'https://gustavobueno301412-bit.github.io/max-artesanatos-lucro/';
+        return;
+      }
+
       const botoes = document.querySelectorAll('.btn-modulo');
       const conteudos = document.querySelectorAll('.conteudo-modulo');
 
